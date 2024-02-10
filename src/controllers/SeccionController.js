@@ -44,7 +44,7 @@ export class SeccionController {
     static async eliminar(req, res) {
         const seccionEliminada = Seccion.eliminar(req.params.id);
         if (seccionEliminada) {
-            res.status(200).json({ message: "Sección eliminada con éxito", seccion: seccionEliminada });
+            res.status(200).json({ message: "Sección eliminada con éxito"});
         } else {
             res.status(404).json({ message: "Sección no encontrada" });
         }

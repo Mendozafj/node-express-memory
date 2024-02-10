@@ -40,6 +40,9 @@ export class ProfesorController {
             const { id } = req.params;
             const datos = req.body;
             const profesorActualizado = Profesor.actualizar(id, datos);
+            if (!profesorActualizado) {
+                return res.status(404).json({ message: "Profesor no encontrado" });
+            }
             res.status(200).json({ message: "Profesor actualizado con éxito", profesorActualizado });
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -49,7 +52,10 @@ export class ProfesorController {
     static async eliminar(req, res) {
         try {
             const { id } = req.params;
-            Profesor.eliminar(id);
+            const profesor =  Profesor.eliminar(id);
+            if(!profesor) {
+                return res.status(404).json({ message: "Profesor no encontrado" });
+            }
             res.status(200).json({ message: "Profesor eliminado con éxito" });
         } catch (error) {
             res.status(500).json({ error: error.message });
