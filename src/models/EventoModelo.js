@@ -4,13 +4,14 @@ import { BaseModelo } from '../config/BaseModelo.js';
 export class Evento extends BaseModelo {
     static eventos = [];
 
-    constructor(tipo, descripcion, fecha, detalles) {
+    constructor(tipo, descripcion, fecha, detalles, materiaId) {
         super();
         this.id = crypto.randomUUID();
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.detalles = detalles;
+        this.materiaId = materiaId;
     }
 
     static agregar(evento) {
