@@ -1,4 +1,5 @@
 import { Profesor } from '../models/ProfesorModelo.js';
+import { Materia } from '../models/MateriaModelo.js';
 
 export class ProfesorController {
     static async agregar(req, res) {
@@ -61,4 +62,16 @@ export class ProfesorController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    static listarProfesoresConMaterias(req, res) {
+        try {
+          const profesoresConMaterias = Profesor.profesores.map(profesor => {
+            const materias = Materia.listar().filter(materia => materia.profesorId === profesor.id);
+            return { ...profesor, materias };
+          });
+          res.status(200).json(profesoresConMaterias);
+        } catch (error) {
+          res.status(500).json({ error: error.message });
+        }
+      }
 }

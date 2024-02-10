@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.post('/profesores', ProfesorController.agregar);
 
+router.get('/profesores/materias', ProfesorController.listarProfesoresConMaterias);
+
 router.get('/profesores', ProfesorController.listar);
 
 router.get('/profesores/:id', ProfesorController.buscarPorId);
