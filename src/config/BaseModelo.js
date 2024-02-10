@@ -1,6 +1,6 @@
 export class BaseModelo {
     constructor() {
-        if (new.target === BaseModel) {
+        if (new.target === BaseModelo) {
             throw new TypeError("No se puede instanciar directamente la clase abstracta.");
         }
     }

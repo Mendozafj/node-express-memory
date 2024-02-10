@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import BaseModelo from '../config/BaseModelo.js';
+import { BaseModelo } from '../config/BaseModelo.js';
 
 export class Profesor extends BaseModelo {
     static profesores = [];
