@@ -1,0 +1,17 @@
+import express from 'express';
+import { ProfesorController } from '../controllers/ProfesorController.js';
+
+const router = express.Router();
+
+
+router.post('/profesores', ProfesorController.agregar);
+
+router.get('/profesores', ProfesorController.listar);
+
+router.get('/profesores/:id', ProfesorController.buscarPorId);
+
+router.put('/profesores/:id', ProfesorController.actualizar);
+
+router.delete('/profesores/:id', ProfesorController.eliminar);
+
+export default router;
