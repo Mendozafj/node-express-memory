@@ -78,7 +78,7 @@ export class ProfesorController {
         );
         return { ...profesor, materias };
       });
-      res.status(200).json(profesoresConMaterias);
+      res.render('profesoresMaterias', { profesores: profesoresConMaterias });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
