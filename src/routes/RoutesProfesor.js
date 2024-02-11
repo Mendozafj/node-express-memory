@@ -16,4 +16,6 @@ router.put('/profesores/:id', ProfesorController.actualizar);
 
 router.delete('/profesores/:id', ProfesorController.eliminar);
 
+router.delete('/profesores/:id/asociado/materias', ProfesorController.eliminarAsociacionProfesorMateria);
+
 export default router;
