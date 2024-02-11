@@ -143,6 +143,16 @@ export class MateriaController {
     const anoConsulta = fechaReferencia.year();
 
     try {
+      if (!fechaConsulta) {
+        return res.status(400).json({
+          error: "Se requiere una fecha válida en formato 'YYYY-MM-DD'.",
+        });
+      }
+      const fechaInicioSemana = dayjs(fechaConsulta)
+        .startOf("week")
+        .format("YYYY-MM-DD");
+      const fechaFinSemana = dayjs(fechaConsulta).endOf("week").format("YYYY-MM-DD");
+
       const materiaExistente = await Materia.buscarPorId(id);
       if (!materiaExistente) {
         return res.status(404).json({ message: "Materia no encontrada." });
@@ -169,9 +179,17 @@ export class MateriaController {
         });
       }
 
-      res
-        .status(200)
-        .json({ eventos: eventosFiltrados, materia: materiaExistente });
+      res.render("eventosPorSemana", {
+        materia: materiaExistente,
+        semana: semanaConsulta,
+        eventos: eventosFiltrados,
+        fechaInicio: fechaInicioSemana, 
+        fechaFin: fechaFinSemana 
+      });
+
+      //res
+      //.status(200)
+      //.json({ eventos: eventosFiltrados, materia: materiaExistente });
     } catch (error) {
       res.status(500).send({
         message: "Error al obtener eventos por semana para la materia",
