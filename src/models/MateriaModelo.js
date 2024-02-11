@@ -4,11 +4,12 @@ import { BaseModelo } from '../config/BaseModelo.js';
 export class Materia extends BaseModelo {
     static materias = [];
 
-    constructor(materia, descripcion) {
+    constructor(materia, descripcion, profesorId) {
         super();
         this.id = crypto.randomUUID();
         this.materia = materia;
         this.descripcion = descripcion;
+        this.profesorId = profesorId;
     }
 
     static agregar(materia) {
